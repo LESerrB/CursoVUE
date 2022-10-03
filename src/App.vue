@@ -1,24 +1,14 @@
-<script>
-  import{ref} from "vue";
-  
-  export default{
-    data(){
-      return{
-        counter: 0,
-      };
-    },
-
-    methods: {
-      increment(){
-        this.counter++
-      },
-    },
-  };
+<script setup>
+import ButtonCounter from './components/ButtonCounter.vue';
 </script>
 
 <template>
-  <h1>APP</h1>
-  <button @click="increment">{{counter}}</button>
+  <div class="container">
+    <h1>APP</h1>
+    
+    <br>
+    <ButtonCounter></ButtonCounter>
+  </div>
 </template>
 
 <style>
