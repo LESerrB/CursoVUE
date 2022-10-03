@@ -27,3 +27,5 @@ npm run dev
 ```sh
 npm run build
 ```
+
+https://bluuweb.github.io/vue-udemy/30-01-fundamentos/#mi-primer-proyecto
