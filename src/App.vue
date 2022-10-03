@@ -2,18 +2,17 @@
   import{ref} from "vue";
   
   export default{
-    setup(){
-      const counter = ref(0);
-
-      const increment = () =>{
-        counter.value++
-      }
-
+    data(){
       return{
-        counter,
-        increment,
-      }
-    }
+        counter: 0,
+      };
+    },
+
+    methods: {
+      increment(){
+        this.counter++
+      },
+    },
   };
 </script>
 
