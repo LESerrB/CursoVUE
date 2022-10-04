@@ -1,6 +1,21 @@
 <script setup>
 import ButtonCounter from './components/ButtonCounter.vue';
 import BlogPost from './components/BlogPost.vue';
+import { ref } from "vue";
+
+const posts = ref([])
+
+const favorito = ref("")
+
+const cambiarFavorito = (title) => {
+  favorito.value = title;
+};
+
+fetch('https://jsonplaceholder.typicode.com/posts')
+  .then(res=>res.json())
+  .then(data=>{
+    post.value = data;
+  });
 </script>
 
 <template>
@@ -8,13 +23,16 @@ import BlogPost from './components/BlogPost.vue';
     <h1>APP</h1>
     
     <br>
-    <ButtonCounter></ButtonCounter>
-    <BlogPost 
-      title="Post 2"
-      id="2"
-      body="description 2"
-      colorText="primary"
-    />
+    <h2>Mis Posts Favoritos: {{favorito}}</h2>
+
+    <BlogPost
+      v-for="post in posts"
+      :key="post.id"
+      :title="post.title"
+      :id="post.id"
+      :body="post.body"
+      @cambiarFavorito = "cambiarFavorito"
+    ></BlogPost>
   </div>
 </template>
 
