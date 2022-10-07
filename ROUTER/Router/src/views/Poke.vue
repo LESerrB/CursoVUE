@@ -1,37 +1,30 @@
 <script setup>
-import axios from 'axios';
-import {ref} from 'vue';
+//import axios from 'axios';
+//import {ref} from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import {useGetData} from '@/composables/getData'
 
 const route = useRoute();
 const router = useRouter();
-const poke = ref({});
+//const poke = ref({});
+const {getData, data, loading, errorData} = useGetData()
 
 const back = () => {
     router.push('/nueva')
 }
 
-const getData = async () =>{
-    try {
-        const data = await axios.get(
-            `https://pokeapi.co/api/v2/pokemon/${route.params.name}`
-        );
-        poke.value = data.data;
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-getData();
+getData(`https://pokeapi.co/api/v2/pokemon/${route.params.name}`);
 </script>
 
 <template>
-    <div>
+    <p v-if="loading">Cargando</p>
+    <alert class="alert alert-danger mt-2" v-if="errorData">{{errorData}}</alert>
+    <div v-if="data">
         <h1>Nombre: {{$route.params.name}}</h1>
-        <img :src="poke.sprites.front_default" alt="">
+        <img :src="data.sprites?.front_default" alt="">
     </div>
-    
+
     <div>
-        <button @click="back">Regresar</button>
+        <button @click="back" class="btn btn-outline-primary">Regresar</button>
     </div>    
 </template>
