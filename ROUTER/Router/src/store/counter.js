@@ -11,7 +11,7 @@ export const useCounterStore = defineStore("counter", () => {
         count,
         increment,
         double
-    }
+    };
 });
 
 // export const useCounterStore = defineStore('counter', {
